@@ -1,0 +1,119 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: url('back.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: rgb(0, 0, 52);
+}
+
+.start-container {
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgb(255, 16, 240);
+    box-shadow: 0 0 10px rgb(255, 16, 240);
+    text-align: center;
+}
+
+.quiz-container {
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgb(255, 16, 240);
+    box-shadow: 0 0 10px rgb(255, 16, 240);
+    text-align: center;
+}
+
+.question {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+.option {
+    font-size: 20px;
+    font-weight: 300;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 1px solid rgb(255, 16, 240);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(255, 16, 240);
+    margin-bottom: 10px;
+    flex-basis: calc(50% - 20px);
+}
+
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #fffefe;
+}
+
+.timer {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 50px;
+    color: #ffffff;
+    margin-bottom: 50px;
+}
+
+#next-button {
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: #0074cc;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    display: none;
+}
+
+#h1 {
+    font-size: 60px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    text-shadow: 2px 2px rgb(255, 16, 240);
+}
+
+#p {
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+#start-button {
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    color: rgb(0, 26, 255);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgb(255, 16, 240);
+    box-shadow: 0 0 10px rgb(255, 16, 240);
+    text-align: center;
+}
+
+#a {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-decoration: none;
+    color: white;
+    font-stretch: ultra-expanded;
+    font-size: xx-large;
+    text-shadow: 2px 2px rgb(255, 16, 240);
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QuizzyNest</title>
+    <style>
+        
+        header 
+            {
+                color: #000000;
+                padding: 10px 0;
+            }
+
+            .top-nav 
+            {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 20px;
+            }
+
+            .nav-links 
+            {
+                list-style: none;
+                display: flex;
+            }
+
+            .nav-links li 
+            {
+                margin-right: 20px;
+                width: 150px; height: 100px;
+            }
+
+            .nav-links a 
+            {
+                font-size:large;
+                font-family: 'Montserrat', sans-serif;
+                text-decoration: none;
+                color: rgb(255, 255, 255);
+                transition: color 0.3s ease-in-out;
+            }
+
+            body
+            {
+                background-size: cover;
+                background: linear-gradient(57deg, #8711c1 , #2472fc ); 
+            }         
+
+            #p
+            {
+                color: white;
+                font-size: xx-large;
+                font-family:'Montserrat', sans-serif;
+                text-shadow: 1.5px 1.5px rgb(255, 0, 247);   
+            }
+
+            #p1
+            {
+                color: white;
+                font-size: 100px;
+                font-weight: 100;
+                font-family:'Montserrat', sans-serif;
+                text-align: center;
+                text-shadow: 3px 3px rgb(255, 0, 247);  
+            }
+
+            #p2
+            {
+                color: white;
+                font-size: 40px;
+                font-family:'Montserrat', sans-serif;
+                text-align: center;
+            }
+
+        
+            .dropdown 
+            {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content 
+            {
+                display: none;
+                position: absolute;
+                background-color: rgb(244, 170, 255);/* Background color for the dropdown */
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgb(255, 255, 255);
+                z-index: 1;
+            }
+
+            .dropdown:hover .dropdown-content 
+            {
+                display: block;
+            }
+
+            .dropdown-content a 
+            {
+                color: #ffffff; /* Text color for the dropdown links */
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-shadow: 1px 1px rgba(157, 0, 255, 0.684);
+            }
+
+            .dropdown-content a:hover 
+            {
+                background-color: #f1f1f15c; /* Background color for hover state */
+            }
+
+             a:hover 
+            {
+                background-color: #f1f1f15c; /* Background color for hover state */
+            }
+    </style>
+</head>
+<body>
+    <br>
+    <header>
+        <nav class="top-nav">
+            <div>
+                <p id="p">QuizzyNest</p> 
+            </div>
+
+            <ul class="nav-links">
+        
+                <li class="dropdown">
+                    <a href="#">Categories&nabla;</a>
+                    <div class="dropdown-content">
+                        <a href="English.html">English</a>
+                        <a href="geography.html">Geography</a>
+                        <a href="solar system.html">Solar System</a>
+                        <a href="pop culture.html">Pop Culture</a>
+                        <a href="humour testing.html">Humour Testing</a>
+                        <a href="GK.html">GK</a>
+                    </div>
+                </li>
+                <li><a href="About Us.html">About Us</a></li>
+                <li><a href="quizgames.html">Quiz Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <p id="p1">
+        <b>Welcome to QuizzyNest!</b>
+    </p>
+
+    <p id="p2">
+        Where Knowledge Meets Fun!
+    </p>
+
+    <br><br><br><br><br><br><br><br>
+
+    
+</body>
+</html>

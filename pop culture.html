@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QuizzyNest</title>
+    <link rel="stylesheet" type="text/css" href="STYLE.CSS">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .timer {
+            color: rgb(255, 255, 255);
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 10px;
+            border: 2px solid #ee00ff;
+            box-shadow: 0 0 10px rgb(255, 16, 240);
+            border-radius: 5px;
+            display: inline-block;
+            width: 120px;
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .option {
+            cursor: pointer;
+        }
+
+        .correct {
+            background-color: green;
+            color: white; /* Changed color to white */
+        }
+
+        .wrong {
+            background-color: red;
+            color: white; /* Changed color to white */
+        }
+
+        .results-container {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .result-item {
+            margin-bottom: 10px;
+        }
+
+        .result-item p {
+            margin: 5px 0;
+        }
+
+        .quiz-summary {
+            color: white;
+        }
+        
+    </style>
+</head>
+<body>
+    <i class="fa fa-home" id="a"></i>
+    <a id="a" href="QUIZ.html">__Home</a>
+   
+    <div class="quiz-container" style="display:none;">
+        <div class="question"></div>
+        <div class="options"></div>
+        <div id="score"></div>
+        <div class="timer"></div>
+        <button id="next-button">Next</button>
+    </div>
+    
+    <div class="quiz-summary" style="display:none;">
+        <h2 class="question-summary"><b>Quiz Summary</b></h2>
+        <div class="questions-summary"></div>
+    </div>
+
+    <div class="start-container">
+        <h1 id="h1">Welcome to the Quiz</h1>
+        <p id="p">Click the button below to start the quiz.</p>
+        <button id="start-button">Start Quiz</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "1) Who is known as 'Queen of Pop'?",
+                options: ["A) Lady Gaga", "B) Madonna", "C) Beyonce", "D) Taylor swift"],
+                answer: "B) Madonna ",
+            },
+            {
+                question: "2) Which actor portrayed the character Tony Stark/Iron Man in the Marvel cinematic Universe(MCU)?",
+                options: ["A) Chris Evans", "B) Robert Downey Jr.", "C) Chris Hemsworth", "D) mark Ruffalo"],
+                answer: "B) Robert Downey Jr",
+            },
+            {
+                question: "3) Which song by Psy became a viral sensation and introduced the world to the 'Gangnam Style dance'?",
+                options: ["A) Party Rock Anthem", "B) Despacito", "C) Gangnam Style", "D) Shape of you"],
+                answer: "C) Gangnam Style",    
+             },
+            {
+                question: "4) Which animated TV show features a character named Homer, who works at the Springfield Nuclear Power Plant?",
+                options: ["A) The Flintstones", "B) South Park", "C) Family Guy", "D) the Simpsons"],
+                answer: "D) The Simpsons",
+            },
+            {
+                question: "5)In the Harry Potter series, what is the name of Harry's pet owl?",
+                options: ["A) Scabbers", "B) Crookshanks", "C) Hedwig", "D) Dobby"],
+                answer: "C) Hedwig",
+            },
+            {
+                question: "6) Who played the role of Jack Dawson in the 1997 film Titanic?",
+                options: ["A) Brad Pitt", "B) Leonard Di Caprio", "C) Tom Hanks", "D) Johnny Depp"],
+                answer: "B)  Leonardo DiCaprio",
+            },
+            {
+                question: "7) What popular video game features a battle royale mode called 'Warzone'?",
+                options: ["A) Fortnite", "B) Apex Legends", "C) Call of Duty:Warzone", "D)  PlayerUnknown's Battlegrounds (PUBG)"],
+                answer: "C) Call of Duty: Warzone",
+            },
+            {
+                question: "8) Which singer released the album 'Lemonade' in 2016, which was accompanied by a visual album of the same name?",
+                options: ["A) Rihanna", "B) Adele", "C) Beyoncé", "D) Taylor Swift"],
+                answer: "C)  Beyoncé",
+            },
+            {
+                question: "9) What Netflix series follows the adventures of a group of kids in the 1980s as they encounter supernatural forces?",
+                options: ["A) The Crown", "B) Black Mirror", "C) Stranger Things", "D) Narcos"],
+                answer: "C) Stranger Things",
+            },
+            {
+                question: "10)Which fictional wizard is known for saying, 'You're a wizard, Harry'?",
+                options: ["A) Gandalf", "B) Merlin", "C) Albus Dumbledore", "D) Hagrid"],
+                answer: "B) Hagrid",
+            },
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let countdown;
+        
+        const questionElement = document.querySelector(".question");
+        const optionsElement = document.querySelector(".options");
+        const scoreElement = document.getElementById("score");
+        const nextButton = document.getElementById("next-button");
+        const startButton = document.getElementById("start-button");
+
+        startButton.addEventListener("click", () => {
+            startQuiz();
+        });
+
+        function startQuiz() {
+            const startContainer = document.querySelector(".start-container");
+            const quizContainer = document.querySelector(".quiz-container");
+            startContainer.style.display = "none";
+            quizContainer.style.display = "block";
+            displayQuestion();
+            startTimer(5 * 60, document.querySelector('.timer')); // Start timer when quiz starts
+        }
+
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            countdown = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        function displayQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                const currentQuestion = questions[currentQuestionIndex];
+                questionElement.textContent = currentQuestion.question;
+                optionsElement.innerHTML = "";
+                currentQuestion.options.forEach((option, index) => {
+                    const optionElement = document.createElement("div");
+                    optionElement.textContent = option;
+                    optionElement.classList.add("option");
+                    optionElement.addEventListener("click", () => checkAnswer(optionElement, option));
+                    optionsElement.appendChild(optionElement);
+                });
+                
+            } else {
+                endQuiz();
+            }
+        }
+
+        function checkAnswer(optionElement, selectedOption) {
+            const currentQuestion = questions[currentQuestionIndex];
+            const isCorrect = selectedOption === currentQuestion.answer;
+            const userAnswer = {
+                option: selectedOption,
+                correct: isCorrect
+            };
+            currentQuestion.userAnswer = userAnswer;
+            if (isCorrect) {
+                optionElement.classList.add("correct");
+                score++;
+            } else {
+                optionElement.classList.add("wrong");
+            }
+            currentQuestionIndex++;
+            nextButton.style.display = "block"; // Show the "Next" button after answering
+        }
+
+        function endQuiz() {
+    clearInterval(countdown);
+    questionElement.textContent = "Quiz Completed!";
+    optionsElement.innerHTML = ""; // Clear options
+    scoreElement.textContent = `Your Score: ${score} out of ${questions.length}`;
+    const questionsSummaryElement = document.querySelector(".questions-summary");
+    // Display all questions with user's answers and correctness
+    questions.forEach((question, index) => {
+        const questionDiv = document.createElement("div");
+        questionDiv.textContent = `${question.question}`;
+        const userAnswer = question.userAnswer;
+        const userAnswerText = userAnswer ? `Your answer: ${userAnswer.option}` : "You didn't answer";
+        const correctAnswer = `Correct answer: ${question.answer}`;
+        const isCorrect = userAnswer && userAnswer.correct ? "Correct" : "Wrong";
+        const userAnswerLine = document.createElement("div");
+        userAnswerLine.textContent = `${userAnswerText} (${isCorrect})`;
+        userAnswerLine.classList.add("user-answer");
+        const correctAnswerLine = document.createElement("div");
+        correctAnswerLine.textContent = correctAnswer;
+        correctAnswerLine.classList.add("correct-answer");
+        questionDiv.appendChild(userAnswerLine); // Append user's answer along with correctness label
+        questionDiv.appendChild(correctAnswerLine); // Append correct answer
+        questionDiv.classList.add("question-summary");
+        questionsSummaryElement.appendChild(questionDiv);
+    });
+    // Show quiz summary container
+    document.querySelector(".quiz-summary").style.display = "block";
+    nextButton.style.display = "none"; // Hide the "Next" button when the quiz is completed.
+}
+
+
+        nextButton.addEventListener("click", () => {
+            displayNextQuestion();
+        });
+
+        function displayNextQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                endQuiz();
+            }
+        }
+    </script>
+    
+</body>
+</html>
